@@ -1,0 +1,241 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+{% block  content %}
+
+		<section class="pager-section blog-version" 
+		style="background-image:url({{post.image.url}});">
+			<div class="container">
+				<div class="pager-content text-center">
+					<ul>
+						<li><a href="#" title="">Home</a></li>
+						<li><a href="#" title="">Blog</a></li>
+						<li><span>{{post.title}}</span></li>
+						
+					</ul>
+					<h2>{{post.title}}</h2>
+					<span class="categry">{{post.category}}</span>
+					<ul class="meta">
+						<li><a href="#" title="">{{post.published}}</a></li>
+						<li><a href="#" title="">{{post.author}}</a></li>
+						<li><img src="/static/assets/img/icon13.png" alt="" /><a href="#" title="">{{post.tag}}</a></li>
+					</ul>
+				</div><!--pager-content end-->
+			</div>
+		</section><!--pager-section end-->
+
+		<section class="page-content p80">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-9">
+						<div class="blog-post single">
+							<center>
+<div class="text-center">
+	{% if messages %}
+	<ul class="messages">
+	    {% for message in messages %}
+	    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	    {% endfor %}
+	</ul>
+	{% endif %}
+</div>
+</center>
+
+							<p>{{post.body|safe}}</p>
+							
+						</div><!--blog-post single end-->
+						<div class="mdp-post-comments">
+							<h3 class="mdp-sub-title">Muhokamalar {{post.comment_set.all.count}}</h3>
+							<ul>
+								{% for c in post.comment_set.all|slice:'10' %}
+								<li>
+									<div class="mdp-comment d-flex flex-wrap">
+										<div class="mdp-img">
+											<img src="https://via.placeholder.com/72x72" alt="">
+										</div>
+										<div class="mdp-com">
+											<h3>{{c.name}}</h3>
+											<span>25/09/2020</span>
+											<p>{{c.message}}</p>
+											<a href="#" title="" class="reply-btn"><i class="fa fa-reply"></i>Reply</a>
+										</div>
+									</div><!--mdp-comment end-->
+								</li>
+							{% endfor %}
+							</ul>
+						</div><!--post-comments end-->
+						<div class="mdp-contact">
+							<div class="comment-area">
+								<h3 class="mdp-sub-title">Fikr bildirish</h3>
+								<form action="" method="POST">
+									<div class="row">
+										<div class="col-lg-4">
+											<div class="form-group">
+												<input type="text" name="name" placeholder="Ism">
+											</div><!--form-group end-->
+										</div>
+										{% csrf_token %}
+										<div class="col-lg-4">
+											<div class="form-group">
+												<input type="email" name="email" placeholder="Email">
+											</div><!--form-group end-->
+										</div>
+										<div class="col-lg-4">
+											<div class="form-group">
+												<input type="text" name="subject" placeholder="Mavzu">
+											</div><!--form-group end-->
+										</div>
+										<div class="col-lg-12">
+											<div class="form-group">
+												<textarea name="message" placeholder="Xabar matni .."></textarea>
+											</div><!--form-group end-->
+										</div>
+										<div class="col-lg-12">
+											<div class="form-submit">
+												<button type="submit"  class="btn-default">Yuborish <i class="fa fa-long-arrow-alt-right"></i></button>
+											</div><!--form-submit end-->
+										</div>
+									</div>
+								</form>
+							</div><!--comment-area end-->
+						</div><!--mdp-contact end-->
+					</div>
+					<div class="col-lg-3">
+						<div class="sidebar">
+							<div class="widget widget-search">
+								<form>
+									<input type="text" name="search" placeholder="Search">
+									<button type="submit"><img src="assets/img/icon4.png" alt=""></button>
+								</form>
+							</div><!--widget-search end-->
+							<div class="widget widget-categories">
+								<h3 class="widget-title">Categories</h3>
+								<ul>
+									<li>
+										<a href="#" title="">Teachers</a>
+										<span>45</span>
+									</li>
+									<li>
+										<a href="#" title="">School News</a>
+										<span>13</span>
+									</li>
+									<li>
+										<a href="#" title="">Lessons</a>
+										<span>6</span>
+									</li>
+									<li>
+										<a href="#" title="">Shelly</a>
+										<span>89</span>
+									</li>
+								</ul>
+							</div><!--widget-categories end-->
+							<div class="widget widget-posts">
+								<h3 class="widget-title">Latest Posts</h3>
+								<div class="wd-posts">
+									<div class="wd-post d-flex flex-wrap">
+										<div class="wd-thumb">
+											<img src="https://via.placeholder.com/52x52" alt="">
+										</div>
+										<div class="wd-info">
+											<h3><a href="#" title="">Duis tempor eros tortor, a ornare</a></h3>
+											<span>17/09/2020</span>
+										</div>
+									</div><!--wd-post end-->
+									<div class="wd-post d-flex flex-wrap">
+										<div class="wd-thumb">
+											<img src="https://via.placeholder.com/52x52" alt="">
+										</div>
+										<div class="wd-info">
+											<h3><a href="#" title="">Duis tempor eros tortor, a ornare</a></h3>
+											<span>17/09/2020</span>
+										</div>
+									</div><!--wd-post end-->
+									<div class="wd-post d-flex flex-wrap">
+										<div class="wd-thumb">
+											<img src="https://via.placeholder.com/52x52" alt="">
+										</div>
+										<div class="wd-info">
+											<h3><a href="#" title="">Duis tempor eros tortor, a ornare</a></h3>
+											<span>17/09/2020</span>
+										</div>
+									</div><!--wd-post end-->
+								</div><!--wd-posts end-->
+							</div><!--widget-posts end-->
+			
+							<div class="widget widget-tags">
+								<h3 class="widget-title">Tags</h3>
+								<ul>
+									<li>
+										<a href="#" title="">Teachers</a>
+									</li>
+									<li>
+										<a href="#" title="">Lessons</a>
+									</li>
+									<li>
+										<a href="#" title="">Shelly</a>
+									</li>
+									<li>
+										<a href="#" title="">School</a>
+									</li>
+									<li>
+										<a href="#" title="">Theme</a>
+									</li>
+									<li>
+										<a href="#" title="">Class</a>
+									</li>
+								</ul>
+							</div><!--widget-tags end-->
+						
+						</div><!--sidebar end-->
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="newsletter-section">
+			<div class="container">
+				<div class="newsletter-sec">
+					<div class="row align-items-center">
+						<div class="col-lg-4">
+							<div class="newsz-ltr-text">
+								<h2>Join us <br /> and stay tuned!</h2>
+								<a href="contacts.html" title="" class="btn-default">Join Us <i class="fa fa-long-arrow-alt-right"></i></a>
+							</div><!--newsz-ltr-text end-->
+						</div>
+						<div class="col-lg-8">
+							<form class="newsletter-form">
+								<div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+											<input type="text" name="name" placeholder="Name">
+										</div><!--form-group end-->
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<input type="email" name="email" placeholder="Email">
+										</div><!--form-group end-->
+									</div>
+									<div class="col-md-4">
+										<div class="form-group select-tg">
+											<select>
+												<option>Class</option>
+												<option>Class</option>
+												<option>Class</option>
+												<option>Class</option>
+												<option>Class</option>
+												<option>Class</option>
+											</select>
+										</div><!--form-group end-->
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea name="message" placeholder="Message"></textarea>
+										</div><!--form-group end-->
+									</div>
+								</div>
+							</form><!--newsletter-form end-->
+						</div>
+					</div>
+				</div><!--newsletter-sec end-->
+			</div>
+		</section><!--newsletter-sec end-->
+{% endblock %}
