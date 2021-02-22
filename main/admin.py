@@ -5,6 +5,7 @@ from .models import *
 admin.site.register(Course)
 admin.site.register(Contact)
 admin.site.register(Comment)
+admin.site.register(Register)
 
 @admin.register(Categories)
 class CatAdmin(admin.ModelAdmin):

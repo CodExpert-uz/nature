@@ -98,3 +98,24 @@ class Comment(models.Model):
 
 	def __str__(self):
 		return f"{self.name}"
+
+class Register(models.Model):
+	CHOICES = (
+		('Python','python'),
+		('Javascript','javascript'),
+		('C++','cpp'),
+		('C#','csharp'),
+		('Ruby','ruby'),
+		('Flutter','flutter'),
+		)
+	name = models.CharField('Ism-Familya', max_length=50)
+	email = models.EmailField()
+	course = models.CharField('Tanlagan kursi', max_length=50, choices=CHOICES)
+	message = models.TextField("Qo'shimcha xabar")
+
+	class  Meta:
+		verbose_name = "A'zo bo'lish"
+		verbose_name_plural = "A'zo bo'lganlar"
+
+	def __str__(self):
+		return f"{self.name}"

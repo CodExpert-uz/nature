@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from django.contrib import messages
+from .forms import 	JoinUsForm
 #Search views
 from django.db.models import Q
 # Create your views here.
@@ -17,9 +18,24 @@ def search(request):
 
 
 def index(request):
+	if request.method == 'POST':
+		form = JoinUsForm(request.POST)
+		if form.is_valid():
+			form.save()
+			print('*'*50)
+		else:
+			print('#'*50)
+	else:
+		form = JoinUsForm()
 	posts = Post.objects.all().order_by('-published')[:3]
 	most_read = Post.objects.filter(most_read=True)
-	return render(request, 'home.html',{'posts':posts, 'most_read':most_read})
+
+	context = {
+	'posts':posts, 
+	'most_read':most_read,
+	'form':form
+	}
+	return render(request, 'home.html',context)
 
 
 def contact(request):
