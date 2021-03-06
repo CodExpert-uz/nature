@@ -5,6 +5,13 @@ from .forms import 	JoinUsForm
 #Search views
 from django.db.models import Q
 # Create your views here.
+import telebot 
+
+
+me = 668618297
+TOKEN = '1133552059:AAH_ZpM-cZHniQoheUqmTNc-wHRE8Enow1c'
+bot = telebot.TeleBot(TOKEN)
+
 
 def search(request):
 	query = request.GET.get('search')
@@ -35,6 +42,7 @@ def index(request):
 	'most_read':most_read,
 	'form':form
 	}
+
 	return render(request, 'home.html',context)
 
 
@@ -44,6 +52,7 @@ def contact(request):
 		e = request.POST['email']
 		m = request.POST['message']
 		Contact.objects.create(name=n, email=e, message=m)
+		bot.send_message(me, 'Saytdan xabar bor \n Ismi : {0}'.format(n))
 		print('*'*50)
 	else:
 		print('#'*50)

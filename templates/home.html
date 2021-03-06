@@ -530,40 +530,37 @@
 						<div class="col-lg-4">
 							<div class="newsz-ltr-text">
 								<h2>Join us <br /> and stay tuned!</h2>
-								<a href="contacts.html" title="" class="btn-default">Join Us <i class="fa fa-long-arrow-alt-right"></i></a>
+								<a href="#" title="" class="btn-default">Join Us <i class="fa fa-long-arrow-alt-right"></i></a>
 							</div><!--newsz-ltr-text end-->
 						</div>
 						<div class="col-lg-8">
-							<form class="newsletter-form">
+							<form class="newsletter-form" method="post" action="">
 								<div class="row">
+									{% csrf_token %}
 									<div class="col-md-4">
 										<div class="form-group">
-											<input type="text" name="name" placeholder="Name">
+											<label for="id_name">Name</label>
+											{{form.name}}
 										</div><!--form-group end-->
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
-											<input type="email" name="email" placeholder="Email">
+											<label for="id_email">Email</label>
+											{{form.email}}
 										</div><!--form-group end-->
 									</div>
 									<div class="col-md-4">
 										<div class="form-group select-tg">
-											<select>
-												<option value="class">Class</option>
-												<option>Class</option>
-												<option>Class</option>
-												<option>Class</option>
-												<option>Class</option>
-												<option>Class</option>
-											</select>
+											{{form.course}}
 										</div><!--form-group end-->
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<textarea name="message" placeholder="Message"></textarea>
+											{{form.message}}
 										</div><!--form-group end-->
 									</div>
 								</div>
+								<input type="submit" class="btn-default" value="Send" >
 							</form><!--newsletter-form end-->
 						</div>
 					</div>
